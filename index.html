@@ -1,59 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <title>RoboSeek: You Need to Interact with Your Objects</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RoboSeek: Learning Embodied Agents with RL and CEM</title>
+
   <style>
-    :root {
+    /* 基本 reset 与 box-sizing（推荐） */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    :root{
       --accent: #27ae60;
       --text: #2c3e50;
+      --muted: #666;
+      --max: 1100px;
+      --page-pad: 24px;
     }
 
-    /* 将页面主体水平居中：左右 margin auto */
+    /* 页面主体：关键在于 margin: 40px auto 使容器水平居中 */
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      margin: 40px auto;        /* 关键：左右为 auto，使容器居中 */
-      max-width: 1100px;        /* 页面最大宽度（可按需调整） */
-      padding: 0 24px;          /* 两侧内边距，防止贴边 */
+      margin: 0;
+      background: #ffffff;
       color: var(--text);
-      line-height: 1.6;
+      font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* 头部整体居中对齐 */
+    /* .page 是整个可视区域的容器（居中） */
+    .page {
+      max-width: var(--max);       /* 控制内容最大宽度 */
+      margin: 40px auto;          /* 关键：上下 40px，左右 auto -> 水平居中 */
+      padding: 0 var(--page-pad);
+    }
+
+    /* --------- Header / Hero （标题区域） --------- */
     .hero {
-      text-align: center;
+      text-align: center;         /* 标题、作者、单位都在此处居中显示 */
       margin-bottom: 6px;
     }
 
-    h1 {
-      font-size: 2.6rem;        /* 大标题 */
-      font-weight: 700;        /* 加粗 */
-      margin: 0 0 8px 0;
-      line-height: 1.05;
+    .hero h1 {
+      font-size: 2.6rem;          /* 可根据需求调整 */
+      line-height: 1.04;
+      margin: 0 0 10px 0;
+      font-weight: 700;
       color: var(--text);
+      letter-spacing: -0.6px;
+      /* 如果你的主题仍覆盖 h1，可以把选择器写得更具体：.page .hero h1 {...} */
     }
 
     .authors {
       color: var(--accent);
-      font-size: 1.05rem;
+      font-size: 1.02rem;
       margin: 6px 0;
     }
-
     .affiliation {
-      color: #555;
+      color: var(--muted);
       font-size: 0.98rem;
       margin: 6px 0 18px;
     }
 
-    /* 按钮行居中并美化 */
+    /* 链接按钮行（居中） */
     .btn-row {
       text-align: center;
       margin-bottom: 36px;
     }
-
     .btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       margin: 6px;
       padding: 10px 18px;
       border-radius: 999px;
@@ -61,51 +77,94 @@
       color: #fff;
       text-decoration: none;
       font-size: 15px;
-      transition: background 0.2s ease;
       box-shadow: 0 2px 0 rgba(0,0,0,0.08);
+      transition: background .18s ease;
     }
     .btn:hover { background: #555; }
 
-    /* Abstract 区块也居中并限制宽度，便于阅读 */
+    /* Abstract 区块：标题+内容都居中，但宽度受限于 max 便于阅读 */
     .abstract {
-      text-align: center;      /* 标题和段落都居中 */
+      text-align: center;
       max-width: 900px;
-      margin: 0 auto 40px;     /* 居中并与下文留间距 */
+      margin: 0 auto 40px;
+    }
+    .abstract h2 {
+      margin: 28px 0 12px;
+      font-size: 1.6rem;
+    }
+    .abstract p {
+      margin: 0;
+      color: #222;
+      line-height: 1.7;
     }
 
-    h2.center { text-align: center; margin-top: 36px; }
+    /* 主体正文（Abstract 下方）保持左对齐 */
+    .main {
+      max-width: 900px;
+      margin: 20px auto 80px;
+      text-align: left;           /* 保持左对齐 */
+      color: #333;
+      line-height: 1.7;
+    }
+    .main h2 {
+      font-size: 1.5rem;
+      margin-top: 36px;
+    }
 
-    /* 响应式：移动端适配 */
+    /* 响应式：移动端缩小标题和按钮 */
     @media (max-width: 640px) {
-      h1 { font-size: 1.6rem; }
+      .hero h1 { font-size: 1.6rem; }
       .btn { padding: 8px 12px; font-size: 14px; }
+      .page { margin: 24px auto; padding: 0 14px; }
     }
   </style>
-
 </head>
 <body>
 
-  <!-- Title -->
-  <h1>RoboSeek: Learning Embodied Agents with RL and CEM</h1>
+  <!-- 页面容器（保证水平居中） -->
+  <div class="page">
 
-  <!-- Authors -->
-  <p class="authors">Your Name, Collaborator Name, Another Author</p>
-  <p class="affiliation">Your University / Institution</p>
+    <!-- Header / Hero -->
+    <header class="hero">
+      <h1>RoboSeek: Learning Embodied Agents with RL and CEM</h1>
+      <p class="authors">Your Name, Collaborator Name, Another Author</p>
+      <p class="affiliation">Your University / Institution</p>
+    </header>
 
-  <!-- Links -->
-  <div class="center">
-    <a class="btn" href="paper.pdf">📄 Paper</a>
-    <a class="btn" href="demo.mp4">🎥 Demo</a>
-    <a class="btn" href="https://github.com/your-username/paper-code">💻 Code</a>
-    <a class="btn" href="dataset.zip">📂 Dataset</a>
-    <a class="btn" href="model.zip">🤖 Model</a>
-  </div>
+    <!-- Buttons row -->
+    <div class="btn-row">
+      <a class="btn" href="paper.pdf">📄 Paper</a>
+      <a class="btn" href="demo.mp4">🎥 Demo</a>
+      <a class="btn" href="https://github.com/your-username/paper-code">💻 Code</a>
+      <a class="btn" href="dataset.zip">📂 Dataset</a>
+      <a class="btn" href="model.zip">🤖 Model</a>
+    </div>
 
-  <!-- Abstract Section -->
-  <h2 class="center">Abstract</h2>
-  <p>
-    （这里写摘要内容。）
-  </p>
+    <!-- Abstract（居中） -->
+    <section class="abstract" aria-labelledby="abstract-title">
+      <h2 id="abstract-title">Abstract</h2>
+      <p>（在这里写摘要内容。摘要正文会居中显示，但你下面的主内容仍保持左对齐。）</p>
+    </section>
+
+    <!-- 主体正文（保持左对齐） -->
+    <main class="main">
+      <h2>1. Introduction</h2>
+      <p>这里是论文正文示范段落。这个区域是左对齐的，便于显示长段落与公式、图表等。</p>
+
+      <h2>2. Key Contributions</h2>
+      <p>下面开始你的分论点或方法介绍（左对齐）。如果你需要把其中的某些小块独立居中，我也可以把那部分单独处理。</p>
+    </main>
+
+  </div> <!-- end .page -->
+
+  <!-- 可选：调试用说明（发布后可删除） -->
+  <!--
+    如果你替换后仍然看到“偏左”，请按顺序排查：
+    1) 强制刷新缓存（Ctrl/Cmd+Shift+R 或 Ctrl+F5）。
+    2) 在浏览器开发者工具 (F12) -> Elements 查看 .page 的 computed margin 是否为 `40px auto`（确认是否被其他 CSS 覆盖）。
+    3) 如果某个外部主题或 GitHub Pages 的样式覆盖了你的选择器，可以把关键规则改为更具体（例如 `.page .hero h1 { ... }`）或临时加上 `!important`。
+    4) 确认你的 index.html 已 push 到仓库并被 GitHub Pages 发布（检查页面左上角 URL 是否和仓库 Pages 一致）。
+  -->
 
 </body>
 </html>
