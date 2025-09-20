@@ -2,82 +2,77 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Roboseek: Learning Embodied Agents with RL and CEM</title>
+  <title>RoboSeek: You Need to Interact with Your Objects</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body { font-family: Arial, sans-serif; margin: 40px; max-width: 900px; line-height: 1.6; }
-    h1, h2 { color: #2c3e50; }
+    h1 {
+      text-align: center;
+      font-weight: bold;
+      font-size: 2.4em;
+      color: #2c3e50;
+    }
+    .authors {
+      text-align: center;
+      font-size: 18px;
+      color: #27ae60; /* 绿色，类似Embodied-R1 */
+      margin-bottom: 4px;
+    }
+    .affiliation {
+      text-align: center;
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 20px;
+    }
     .center { text-align: center; }
-    .authors { font-size: 18px; color: #555; }
     .btn {
       display: inline-block;
-      margin: 8px;
-      padding: 10px 16px;
-      border-radius: 6px;
-      background: #3498db;
+      margin: 6px;
+      padding: 10px 18px;
+      border-radius: 20px;
+      background: #333;
       color: white;
+      font-size: 15px;
       text-decoration: none;
       transition: 0.3s;
     }
-    .btn:hover { background: #2c80b4; }
+    .btn:hover { background: #555; }
     pre {
       background: #f4f4f4;
       padding: 12px;
       border-radius: 6px;
       overflow-x: auto;
     }
-    img { max-width: 100%; margin: 12px 0; }
-    video { max-width: 100%; margin: 12px 0; border-radius: 6px; }
+    img, video {
+      max-width: 100%;
+      margin: 12px 0;
+      border-radius: 6px;
+    }
   </style>
 </head>
 <body>
 
   <!-- Title -->
-  <h1 class="center">Roboseek: Learning Embodied Agents with RL and CEM</h1>
-  <p class="center authors"><i>Anonymous Authors</i></p>
+  <h1>RoboSeek: Learning Embodied Agents with RL and CEM</h1>
+
+  <!-- Authors -->
+  <p class="authors">Your Name, Collaborator Name, Another Author</p>
+  <p class="affiliation">Your University / Institution</p>
 
   <!-- Links -->
   <div class="center">
     <a class="btn" href="paper.pdf">📄 Paper</a>
     <a class="btn" href="demo.mp4">🎥 Demo</a>
     <a class="btn" href="https://github.com/your-username/paper-code">💻 Code</a>
+    <a class="btn" href="dataset.zip">📂 Dataset</a>
+    <a class="btn" href="model.zip">🤖 Model</a>
   </div>
 
-  <!-- Abstract -->
-  <h2>Abstract</h2>
+  <!-- Abstract Section -->
+  <h2 class="center">Abstract</h2>
   <p>
-    We propose <b>Roboseek</b>, a novel framework that integrates reinforcement learning (RL) 
-    with the cross-entropy method (CEM) to improve embodied agents in complex multi-step tasks. 
-    Our approach enables agents to efficiently explore high-dimensional action spaces while 
-    ensuring robust generalization to real-world environments. Extensive experiments 
-    in both simulation and real-world robotics validate the effectiveness of our method.
+    （这里写摘要内容。）
   </p>
-
-  <!-- Figure -->
-  <h2>Method Overview</h2>
-  <img src="images/overview.png" alt="Method overview figure">
-
-  <!-- Demo -->
-  <h2>Demo Video</h2>
-  <video controls>
-    <source src="demo.mp4" type="video/mp4">
-    Your browser does not support video playback.
-  </video>
-
-  <!-- BibTeX -->
-  <h2>BibTeX</h2>
-  <pre>
-@inproceedings{your2025roboseek,
-  title={Roboseek: Learning Embodied Agents with RL and CEM},
-  author={Anonymous},
-  booktitle={ICRA},
-  year={2026}
-}
-  </pre>
-
-  <!-- Footer -->
-  <hr>
-  <p class="center">© 2025 Anonymous Authors. Website template adapted for academic use.</p>
 
 </body>
 </html>
